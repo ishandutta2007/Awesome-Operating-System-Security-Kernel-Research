@@ -1,233 +1,256 @@
-# Awesome-Operating-System-Security-Kernel-Research
-
 # Awesome Operating System Security & Kernel Research
 
-> A curated list of top Operating System Security and Kernel Research platforms — both SaaS/Hosted commercial endpoint protection suites and open-source alternatives for kernel-level security, rootkit detection, and OS internals research.
-> 🌟 Star this repo if you find it useful! 🌟
+[![Awesome](https://awesome.re/badge.svg)](https://awesome.re)
+[![License: CC0-1.0](https://img.shields.io/badge/License-CC0_1.0-lightgrey.svg)](http://creativecommons.org/publicdomain/zero/1.0/)
+[![PRs Welcome](https://img.shields.io/badge/PRs-welcome-brightgreen.svg)](http://makeapullrequest.com)
+
+> A curated list of top Operating System Security and Kernel Research platforms — comparing enterprise SaaS endpoint detection & response (EDR/XDR) suites and open-source tools for kernel-level security, eBPF telemetry, rootkit detection, vulnerability fuzzer analysis, and low-level OS internals research.
+
+🌟 **Star this repository if you find it helpful!** 🌟
 
 ---
 
-## 📋 Table of Contents
+## 📑 Table of Contents
 
-- [SaaS / Hosted Platforms](#-saas--hosted-platforms)
-  - [CrowdStrike Falcon](#crowdstrike-falcon)
-  - [SentinelOne Singularity](#sentinelone-singularity)
-  - [Microsoft Defender for Endpoint](#microsoft-defender-for-endpoint)
-  - [Carbon Black Cloud](#carbon-black-cloud)
-  - [Sophos Intercept X](#sophos-intercept-x)
-  - [Trend Micro Apex One](#trend-micro-apex-one)
-  - [Cybereason](#cybereason)
-  - [Bitdefender GravityZone](#bitdefender-gravityzone)
-  - [Palo Alto Cortex XDR](#palo-alto-cortex-xdr)
-  - [Trellix Endpoint Security](#trellix-endpoint-security)
-- [Open-Source Software](#-open-source-software)
-  - [Warden](#warden)
+- [Sector Overview & Market Dynamics](#sector-overview--market-dynamics)
+- [SaaS & Commercial Platforms](#-saas--commercial-platforms)
+- [Open-Source Software & Research Tools](#-open-source-software--research-tools)
+  - [osquery](#osquery)
+  - [bcc (BPF Compiler Collection)](#bcc-bpf-compiler-collection)
   - [Wazuh](#wazuh)
-  - [chkrootkit](#chkrootkit)
+  - [Atomic Red Team](#atomic-red-team)
+  - [bpftrace](#bpftrace)
+  - [Falco](#falco)
+  - [Syzkaller](#syzkaller)
+  - [Capa](#capa)
+  - [Tetragon](#tetragon)
+  - [Tracee](#tracee)
+  - [Volatility 3](#volatility-3)
   - [HakiOS (hakios-xnu-kernel)](#hakios-hakios-xnu-kernel)
-  - [RustEKC](#rustekc)
-  - [Harness](#harness)
+  - [Rekall](#rekall)
+  - [AIDE](#aide)
+  - [osquery-extensions](#osquery-extensions)
+  - [chkrootkit](#chkrootkit)
+  - [Warden](#warden)
+  - [Endpoint Security AI Agent](#endpoint-security-ai-agent)
   - [RuntimeTrace](#runtimetrace)
   - [KSword](#ksword)
-  - [Endpoint Security AI Agent](#endpoint-security-ai-agent)
+  - [RustEKC](#rustekc)
+  - [Harness](#harness)
+- [📊 Comparison at a Glance](#-comparison-at-a-glance)
+- [🤝 Contributing](#-contributing)
+- [📄 License](#-license)
 
 ---
 
-## 🟦 SaaS / Hosted Platforms
+## Sector Overview & Market Dynamics
 
-Commercial, cloud-hosted OS Security and Kernel-level endpoint protection platforms. These are not open-source but are included as reference points for feature comparison.
+The global **Endpoint Security and OS Protection** market is valued at approximately **$18.5 Billion in 2024** and is projected to expand to nearly **$38.5 Billion by 2030**, exhibiting a robust Compound Annual Growth Rate (CAGR) of ~12.5%. 
 
-### CrowdStrike Falcon
-**Type:** AI-native endpoint protection with kernel-level telemetry
-CrowdStrike Falcon is a leading cloud-native endpoint protection platform with deep kernel-level visibility and threat intelligence. It provides EDR, XDR, and managed threat hunting capabilities, with a single lightweight agent.
-
-### SentinelOne Singularity
-**Type:** Autonomous endpoint protection with kernel-level behavioral AI
-SentinelOne provides autonomous EDR/XDR with behavioral AI models that run at the endpoint level, including kernel-level monitoring. It is known for automated response and ransomware rollback capabilities.
-
-### Microsoft Defender for Endpoint
-**Type:** Integrated endpoint protection within Microsoft XDR
-Defender for Endpoint provides EDR capabilities tightly integrated with the Microsoft security ecosystem, including kernel-level sensor telemetry and automated investigation.
-
-### Carbon Black Cloud
-**Type:** Behavioral EDR with kernel-level recording
-Carbon Black Cloud provides continuous endpoint activity recording and behavioral analytics, with kernel-level visibility for threat hunting and compliance.
-
-### Sophos Intercept X
-**Type:** Deep learning endpoint protection with anti-ransomware
-Intercept X combines signature-based and behavioral detection with deep learning models, including kernel-level ransomware protection via CryptoGuard.
-
-### Trend Micro Apex One
-**Type:** Enterprise endpoint security with XDR
-Apex One provides endpoint protection with behavioral analysis, application control, and integration into Trend Micro's Vision One XDR platform.
-
-### Cybereason
-**Type:** AI-driven endpoint detection and response
-Cybereason provides EDR with behavioral analytics and automated response, including kernel-level monitoring for ransomware and fileless attacks.
-
-### Bitdefender GravityZone
-**Type:** Layered endpoint protection with machine learning
-GravityZone provides endpoint security with multiple layers including machine learning, behavioral monitoring, and kernel-level protection.
-
-### Palo Alto Cortex XDR
-**Type:** Integrated XDR with kernel-level endpoint protection
-Cortex XDR combines endpoint protection with network and cloud telemetry, providing kernel-level visibility and automated response.
-
-### Trellix Endpoint Security
-**Type:** Enterprise endpoint protection with FireEye/McAfee heritage
-Trellix Endpoint Security provides integrated endpoint protection with threat intelligence from FireEye/Mandiant lineage, including kernel-level behavioral monitoring.
+The market dynamics exhibit a **moderately concentrated hybrid structure**: the upper echelon is dominated by mega-cap technology conglomerates (such as Microsoft and Broadcom) and specialized cybersecurity giants (such as Palo Alto Networks and CrowdStrike) that command the majority of large enterprise deployments, while a diverse and fragmented long-tail of specialized EDR providers, MDR vendors, and open-source low-level kernel telemetry frameworks serve niche and emerging operational use cases.
 
 ---
 
-## 🟩 Open-Source Software
+## 🟦 SaaS & Commercial Platforms
 
-Self-hosted, community-driven tools for OS security research, kernel-level protection, and rootkit detection.
+Enterprise-grade, cloud-hosted operating system security, EDR, and kernel-level endpoint protection suites. Sorted by company size (valuation / market capitalization) in descending order:
 
-### Warden
-**Stack:** Rust / eBPF / Linux | **License:** Open Source (GitHub) 
-Warden is a free, open-source **EDR for Linux workstations** written in Rust, with a security model hardened through adversarial testing . Key kernel-level and security research capabilities include:
-- **eBPF modules** (`warden-exec`, `warden-network`) for kernel-level execution and network monitoring 
-- **Fanotify-based ransomware detection** with per-PID, per-directory, and global counters to catch fork-per-file attacks 
-- **YARA scanning** with file descriptor-based reads to avoid TOCTOU vulnerabilities 
-- **Hardened through real testing**: package-manager spoofing detection (checks directory, not just name), quarantine bypass prevention via safe truncation, and UID checks for auto-quarantine privileges 
-- **GTK4 GUI** with privileged actions gated behind `pkexec` authentication 
+| Platform | Company Size (Market Cap / Revenue) | Pricing (Specific Starting Tier) | Free Tier / Evaluation Limits | Key Kernel & Security Focus |
+| :--- | :--- | :--- | :--- | :--- |
+| **Microsoft Defender for Endpoint** | **$3.55T Market Cap** (~$318B Revenue; >$20B Security ARR) | **$3.00/user/month** (Plan 1 standalone) / **$5.20/user/month** (Plan 2 with full EDR) | **30-day free trial** (up to 25 evaluation licenses via Microsoft 365 Admin Center) | Integrated Windows/Linux/macOS kernel sensors, behavioral EDR, Attack Surface Reduction (ASR) rules, and automated investigation playbooks. |
+| **Carbon Black Cloud** | **$1.42T Market Cap** (Broadcom parent; ~$63.9B total Revenue) | **$30.00/endpoint/year** (starting baseline estimate for Endpoint Standard tier) | **14 to 30-day vendor-assisted evaluation/PoC** upon enterprise request (no automated instant self-serve tier) | Deep continuous event recording at the kernel level, streaming behavioral prevention, tamper-resistant system auditing, and live response CLI. |
+| **Palo Alto Cortex XDR** | **$231B Market Cap** (~$12.4B TTM Revenue) | **$40.00/endpoint/year** (Cortex XDR Prevent list baseline) / **$70.00/endpoint/year** (Cortex XDR Pro) | **30-day vendor-managed Proof of Concept (PoC)** upon enterprise sales request | Cross-data detection, kernel driver hooking & anti-tamper controls, exploit prevention modules, and cloud analytics. |
+| **CrowdStrike Falcon** | **$52B Market Cap** (~$4.8B TTM Revenue) | **$59.99/device/year** (or **$7.99/device/month**) for entry Falcon Go tier | **15-day free trial** (Falcon Go / Pro with full Next-Gen Antivirus, USB Device Control, and Express Support; no credit card required) | AI-native endpoint protection with kernel-level driver sensors (`CSAgent`), zero-reboot architecture, and continuous telemetry. |
+| **SentinelOne Singularity** | **$7.9B Market Cap** (~$1.0B TTM Revenue) | **$69.99/endpoint/year** (Singularity Core list baseline) | **14 to 30-day structured partner-led evaluation/PoC** (up to 60 days via authorized MSP/VAR channels) | Autonomous behavioral AI models operating at the kernel/OS layer, automated rollback, and real-time active containment without cloud round-trip. |
+| **Trend Micro Apex One** | **$6.2B Market Cap** (~$1.8B TTM Revenue) | **$32.50/endpoint/year** (Apex One as a Service base volume license; ~₹1,500/seat/yr) | **30-day free trial** (Apex One as a Service cloud tenant evaluation) | Advanced malware analysis, kernel-level behavioral monitoring, virtual patching, and integrated endpoint detection & response. |
+| **Sophos Intercept X** | **$3.9B Valuation** (Thoma Bravo; ~$1.0B ARR) | **$28.00/user/year** (baseline Intercept X Advanced license via authorized resellers) | **30-day free trial** (full access to Sophos Central management console and endpoint agents; instant online sign-up) | Deep learning neural network detection, CryptoGuard kernel anti-ransomware rollback, and exploit mitigation. |
+| **Trellix Endpoint Security** | **~$1.5B Revenue** (Symphony Technology Group; FireEye + McAfee) | **$26.00/endpoint/year** (Trellix ENS Essentials starting list tier) | **60-day free trial** (provisions 5 evaluation endpoint licenses via Trellix ePO-SaaS) | Deep kernel telemetry, unified endpoint prevention (ENS), behavioral dynamic application containment, and adaptive threat defense. |
+| **Bitdefender GravityZone** | **~$800M Valuation** (~$350M Revenue) | **$38.50/device/year** (Business Security tier at 10-seat baseline; promo rates often start at **$26.95/device/year**) | **30-day free trial** (unrestricted access to GravityZone Cloud Console for up to 100 endpoints) | Multi-layered kernel protection, HyperDetect tunable machine learning, fileless attack defense, and risk analytics. |
+| **Cybereason** | **~$400M Valuation** (~$180M Revenue; LevelBlue acquisition) | **$72.00/endpoint/year** ($6.00/endpoint/month base EDR tier estimate) | **14 to 30-day structured Proof of Concept (PoC)** upon enterprise request | Malicious Operation (MalOp) graph engine, kernel sensor monitoring, and automated response orchestration. |
 
-The project documents its security findings and fixes in `PROGRESS.md`, with reproducing tests for each vulnerability addressed .  
-**Best for:** Linux security researchers and administrators wanting a hardened, open-source EDR with kernel-level telemetry and documented security research practices.
+---
+
+## 🟩 Open-Source Software & Research Tools
+
+Self-hosted, community-driven frameworks, kernel introspection libraries, eBPF tracing tools, and OS security analysis engines. Sorted by GitHub star count in descending order:
+
+### osquery
+[![Stars](https://img.shields.io/github/stars/osquery/osquery?style=social&color=white)](https://github.com/osquery/osquery/stargazers)
+- **Repository:** [osquery/osquery](https://github.com/osquery/osquery)
+- **Stack:** C++ / SQLite / Multi-Platform | **License:** Apache-2.0
+- **Overview:** Exposes an operating system as a high-performance relational database. Allows security researchers and incident responders to write SQL-based queries to inspect low-level OS internals, running processes, open network sockets, kernel modules, file hashes, and hardware devices across Linux, macOS, and Windows.
+
+### bcc (BPF Compiler Collection)
+[![Stars](https://img.shields.io/github/stars/iovisor/bcc?style=social&color=white)](https://github.com/iovisor/bcc/stargazers)
+- **Repository:** [iovisor/bcc](https://github.com/iovisor/bcc)
+- **Stack:** C / C++ / Python / eBPF | **License:** Apache-2.0
+- **Overview:** Toolkit for creating efficient kernel tracing and manipulation programs using extended Berkeley Packet Filters (eBPF). Widely regarded as the foundational framework for Linux kernel observation, performance analysis, security auditing, and system-call interdiction with negligible performance overhead.
 
 ### Wazuh
-**Stack:** C++ / OpenSearch | **License:** GPL-2.0 
-Wazuh is a unified open-source XDR and SIEM platform with an endpoint security agent deployed to monitored systems and a management server that collects and analyzes data . Key capabilities for OS security research include:
-- **File Integrity Monitoring (FIM)** with real-time alerts on file additions, modifications, and deletions 
-- **Rootkit detection** and **malware detection** monitoring files, system logs, Windows Registry, and system calls 
-- **Vulnerability Detection** correlating software inventory against CVE data 
-- **Active response** for automated actions 
-- **FreeBSD support** with extensive quarterly improvements including fixes for MYSQL option startup issues, asyncinotify support for the Wazuh API, and SQLite-based package information retrieval [citation:4]
+[![Stars](https://img.shields.io/github/stars/wazuh/wazuh?style=social&color=white)](https://github.com/wazuh/wazuh/stargazers)
+- **Repository:** [wazuh/wazuh](https://github.com/wazuh/wazuh)
+- **Stack:** C / C++ / OpenSearch / Python | **License:** GPL-2.0
+- **Overview:** Free and open-source unified XDR and SIEM platform. Provides an endpoint security agent that continuously monitors OS system calls, Windows Registry changes, file integrity (FIM), and active processes, while checking for rootkits, vulnerabilities, and policy compliance.
 
-The FreeBSD status report documents ongoing work to improve platform support, with a centralized GitHub repository for patches [citation:4].  
-**Best for:** Organizations wanting a comprehensive open-source SIEM/XDR platform with kernel-level monitoring and rootkit detection capabilities across multiple platforms.
+### Atomic Red Team
+[![Stars](https://img.shields.io/github/stars/redcanaryco/atomic-red-team?style=social&color=white)](https://github.com/redcanaryco/atomic-red-team/stargazers)
+- **Repository:** [redcanaryco/atomic-red-team](https://github.com/redcanaryco/atomic-red-team)
+- **Stack:** YAML / PowerShell / Bash / Python | **License:** MIT
+- **Overview:** Library of simple, open-source, automated tests mapped directly to the MITRE ATT&CK framework. Essential for testing whether OS security telemetry, kernel hooks, and EDR agents accurately detect adversarial behaviors and privilege escalation attempts.
 
-### chkrootkit
-**Stack:** Shell script / C | **License:** Open Source 
-chkrootkit is a long-standing tool to locally check for signs of a rootkit . It contains:
-- **chkrootkit**: shell script that checks system binaries for rootkit modification 
-- **ifpromisc**: checks if the network interface is in promiscuous mode 
-- **chklastlog / chkwtmp / chkutmp**: checks for log deletions 
-- **chkproc**: checks for signs of LKM (Loadable Kernel Module) trojans 
-- **chkdirs**: checks for signs of LKM trojans 
+### bpftrace
+[![Stars](https://img.shields.io/github/stars/iovisor/bpftrace?style=social&color=white)](https://github.com/iovisor/bpftrace/stargazers)
+- **Repository:** [iovisor/bpftrace](https://github.com/iovisor/bpftrace)
+- **Stack:** C++ / LLVM / eBPF | **License:** Apache-2.0
+- **Overview:** High-level tracing language for Linux eBPF inspired by awk, C, and DTrace. Enables researchers to inspect kernel probe points (`kprobes`), user space probes (`uprobes`), and kernel tracepoints on the fly without modifying kernel code or recompiling drivers.
 
-It is packaged for Fedora (version 0.58) and available for multiple architectures [citation:8].  
-**Best for:** System administrators wanting a proven, lightweight tool for detecting signs of rootkits on Linux systems.
+### Falco
+[![Stars](https://img.shields.io/github/stars/falcosecurity/falco?style=social&color=white)](https://github.com/falcosecurity/falco/stargazers)
+- **Repository:** [falcosecurity/falco](https://github.com/falcosecurity/falco)
+- **Stack:** C++ / eBPF / Lua | **License:** Apache-2.0
+- **Overview:** De facto standard cloud-native runtime security tool created by Sysdig (CNCF graduated). Employs eBPF kernel drivers to intercept Linux system calls in real-time, matching them against customizable security rule sets to detect abnormal kernel behavior, unauthorized container execution, and privilege escalation.
+
+### Syzkaller
+[![Stars](https://img.shields.io/github/stars/google/syzkaller?style=social&color=white)](https://github.com/google/syzkaller/stargazers)
+- **Repository:** [google/syzkaller](https://github.com/google/syzkaller)
+- **Stack:** Go / C++ | **License:** Apache-2.0
+- **Overview:** Unsupervised, coverage-guided kernel fuzzer developed by Google. Used globally by OS security teams to discover memory safety vulnerabilities, zero-day crashes, and race conditions in the Linux kernel, FreeBSD, NetBSD, OpenBSD, Windows, and Fuchsia.
+
+### Capa
+[![Stars](https://img.shields.io/github/stars/mandiant/capa?style=social&color=white)](https://github.com/mandiant/capa/stargazers)
+- **Repository:** [mandiant/capa](https://github.com/mandiant/capa)
+- **Stack:** Python / Rust | **License:** Apache-2.0
+- **Overview:** Open-source identification tool from Mandiant that detects capabilities in executable files. Automatically tells you what a binary can do (e.g., inject code into kernel space, install services, bypass UAC, or evade detection) by comparing program structure against curated community rules.
+
+### Tetragon
+[![Stars](https://img.shields.io/github/stars/cilium/tetragon?style=social&color=white)](https://github.com/cilium/tetragon/stargazers)
+- **Repository:** [cilium/tetragon](https://github.com/cilium/tetragon)
+- **Stack:** C / Go / eBPF | **License:** Apache-2.0
+- **Overview:** eBPF-based real-time security observability and runtime enforcement tool from Cilium. Inspects system calls, namespace transitions, and socket operations directly within the Linux kernel to enforce deep security boundaries and immediately terminate rogue processes.
+
+### Tracee
+[![Stars](https://img.shields.io/github/stars/aquasecurity/tracee?style=social&color=white)](https://github.com/aquasecurity/tracee/stargazers)
+- **Repository:** [aquasecurity/tracee](https://github.com/aquasecurity/tracee)
+- **Stack:** Go / C / eBPF | **License:** Apache-2.0
+- **Overview:** Lightweight OS and container runtime security engine powered by eBPF from Aqua Security. Captures low-level operating system events and executes behavioral signature detection engines to catch malicious system modifications, rootkits, and container breakouts.
+
+### Volatility 3
+[![Stars](https://img.shields.io/github/stars/volatilityfoundation/volatility3?style=social&color=white)](https://github.com/volatilityfoundation/volatility3/stargazers)
+- **Repository:** [volatilityfoundation/volatility3](https://github.com/volatilityfoundation/volatility3)
+- **Stack:** Python | **License:** VSL (Volatility Software License)
+- **Overview:** The world's most widely used memory forensics framework for extracting digital artifacts from volatile memory (RAM) dumps. Indispensable for kernel security researchers analyzing DKOM (Direct Kernel Object Manipulation), hidden drivers, injected threads, and advanced memory-resident rootkits.
 
 ### HakiOS (hakios-xnu-kernel)
-**Stack:** C / XNU (Darwin kernel) | **License:** APSL 2.0 (XNU patch) / MIT (rest) 
-HakiOS is an experimental project focused on bringing **Darwin (XNU kernel)** to Android hardware . Key research characteristics:
-- **Runs Apple's open-source XNU kernel** (`xnu-8796.121.2`, iOS 16.5) on Android phones, with a boot loader, drivers, and configuration of its own 
-- **Runs in QEMU** with nothing of Apple's and nothing of any phone's (`make qemu-open`) 
-- **Research bench, not a ROM**: by default runs from RAM, and a reboot gives the phone back to Android 
-- **Metal on Adreno**: `hakios-metal` implements Metal's command model on the Adreno GPU through the kernel's GPU driver, achieving 110-118 fps for page swipes on a POCO X5 Pro 5G [citation:5]
-- **Builds on Linux with stock clang** (no macOS, no Xcode) and on macOS with Xcode 
+[![Stars](https://img.shields.io/github/stars/oosexgang/hakios-xnu-kernel?style=social&color=white)](https://github.com/oosexgang/hakios-xnu-kernel/stargazers)
+- **Repository:** [oosexgang/hakios-xnu-kernel](https://github.com/oosexgang/hakios-xnu-kernel)
+- **Stack:** C / XNU (Darwin kernel) | **License:** APSL-2.0 / MIT
+- **Overview:** Experimental research operating system project bringing Apple's Darwin (XNU) kernel to Android smartphone hardware. Allows low-level kernel researchers to explore cross-platform porting, hardware abstraction layers, custom bootloaders, and native Metal command models on Adreno GPUs.
 
-**Important:** This is an independent research project, not affiliated with or endorsed by Apple. No Apple firmware is distributed—users supply their own .  
-**Best for:** OS kernel researchers exploring cross-platform kernel porting, Darwin internals, and GPU driver implementation on non-native hardware.
+### Rekall
+[![Stars](https://img.shields.io/github/stars/google/rekall?style=social&color=white)](https://github.com/google/rekall/stargazers)
+- **Repository:** [google/rekall](https://github.com/google/rekall)
+- **Stack:** Python / C | **License:** Apache-2.0
+- **Overview:** Advanced memory analysis and kernel incident response platform originally developed by Google. Provides an interactive exploration environment for physical memory analysis, page table translation, kernel object carving, and Windows/Linux kernel symbol resolution.
 
-### RustEKC
-**Stack:** Rust / RISC-V64 / AArch64 | **License:** Open Source (Zenodo artifact) 
-RustEKC is a **portable kernel compartment** (Embedded Kernel Compartment) implemented in Rust that eliminates the need for virtualization, extended ISAs, and secure hardware modules for kernel isolation . Key research characteristics:
-- **Cross-platform prototype** with good portability and reusability 
-- **Deployed OS kernels**: rCore, FreeRTOS, and TinyLinux as payloads 
-- **QEMU platform** support for RISC-V64 and AArch64 
-- **Artifact includes**: source code, payload sources, and pre-compiled binaries for direct testing 
+### AIDE (Advanced Intrusion Detection Environment)
+[![Stars](https://img.shields.io/github/stars/aide/aide?style=social&color=white)](https://github.com/aide/aide/stargazers)
+- **Repository:** [aide/aide](https://github.com/aide/aide)
+- **Stack:** C | **License:** GPL-2.0
+- **Overview:** Proven open-source host-based file and directory integrity checker (FIM). Creates a cryptographic baseline database of OS binaries, file attributes, extended attributes, and SELinux contexts, alerting administrators when system files or kernel binaries are altered.
 
-The design aims to enhance operating system security by solving the kernel growth and complexity problem with a cross-platform isolation mechanism .  
-**Best for:** OS security researchers exploring lightweight kernel isolation mechanisms without hardware virtualization support.
+### osquery-extensions
+[![Stars](https://img.shields.io/github/stars/trailofbits/osquery-extensions?style=social&color=white)](https://github.com/trailofbits/osquery-extensions/stargazers)
+- **Repository:** [trailofbits/osquery-extensions](https://github.com/trailofbits/osquery-extensions)
+- **Stack:** C++ / Go / Python | **License:** Apache-2.0
+- **Overview:** Curated collection of high-impact osquery plugins and extensions developed by Trail of Bits. Extends osquery with specialized tables for system introspection, binary analysis, dynamic firewall state evaluation, and low-level forensics data collection.
 
-### Harness
-**Stack:** Hypervisor-based (Raspberry Pi) | **License:** Research artifact (USENIX Security '25) 
-Harness is a lightweight framework that **transparently protects vehicle control from an untrusted Android Automotive Operating System (AAOS)** . Key research characteristics:
-- **Leverages hypervisor capabilities** to isolate security-critical components from AAOS 
-- **Protects interactions** with the external environment 
-- **Ensures vehicle control operations align with user intent** 
-- **Artifacts include**: modified host and guest kernels, Harness kernel module, Lowvisor host kernel module, and AOSP patch 
+### chkrootkit
+[![Stars](https://img.shields.io/github/stars/Magentron/chkrootkit?style=social&color=white)](https://github.com/Magentron/chkrootkit/stargazers)
+- **Repository:** [Magentron/chkrootkit](https://github.com/Magentron/chkrootkit) (Official Mirror)
+- **Stack:** Shell script / C | **License:** Open Source (chkrootkit license)
+- **Overview:** Classical, lightweight Unix/Linux security scanner that inspects local system binaries for signs of rootkit modifications, promisc network interfaces, deleted utmp/wtmp logs, and Loadable Kernel Module (LKM) trojans.
 
-Presented at USENIX Security '25, with attack simulation and benchmark evaluation code provided [citation:11].  
-**Best for:** Automotive security researchers and OS kernel researchers exploring hypervisor-based isolation for safety-critical systems.
-
-### RuntimeTrace
-**Stack:** Python / eBPF / Linux | **License:** Open Source (PyPI) 
-RuntimeTrace is a **runtime cross-layer consistency checker via eBPF** that detects discrepancies between kernel state and user-space expectations . Key research-relevant capabilities:
-- **Detects deleted executables still running** (`deleted_exe_running`) 
-- **Hidden module detection** via `/proc/modules` vs `/sys/module` comparison (with careful handling of built-in vs loaded modules) 
-- **Pure comparison logic** tested with fake tampered and clean scenarios, plus a root-only eBPF collector test that attaches a real probe 
-- **Lessons documented**: the first version flagged well over a hundred "hidden modules" on a clean system due to built-in modules appearing in `/sys/module`, fixed by checking for `coresize` file 
-
-The tool emphasizes that "a tool that cries wolf on a clean system gets ignored" and documents its fixes before shipping [citation:3].  
-**Best for:** Security researchers and system administrators wanting to detect kernel-level inconsistencies such as hidden modules and deleted executables.
-
-### KSword
-**Stack:** Windows kernel driver / Qt | **License:** Open Source (AtomGit mirror) 
-KSword is a **Windows kernel-level anti-rootkit and system analysis project** built around a hypervisor (Intel VMX/EPT, experimental AMD SVM/NPT) . Key research capabilities:
-- **Nested virtualization architecture** (Hyper-V → Windows → KSword → VMware → TinyCore chain documented) 
-- **17 main docks** covering Process, Network, Memory, File, Driver, Kernel, HVM, Monitor, Hardware, Privileges, Windows, Registry, Handles, Startup, Services, and more 
-- **Kernel-level analysis**: SSDT/SSSDT, inline/IAT/EAT hooks, CID cross-view, ALPC/IPC, callback inventory, and descriptor/IOCTL decoding 
-- **Reversible R0 hiding** (gated), PPL/signature operations with risk prompts 
-- **Kernel Knowledge**: 71 articles included 
-
-Controlled Intel experiments include 4×2 page remap/restore trials and VMware guest nested-SVM probes (1/2/4/8-vCPU) .  
-**Best for:** Windows kernel security researchers exploring rootkit detection, hypervisor-based monitoring, and deep system internals analysis.
+### Warden
+[![Stars](https://img.shields.io/github/stars/Spellskite-coding/Warden?style=social&color=white)](https://github.com/Spellskite-coding/Warden/stargazers)
+- **Repository:** [Spellskite-coding/Warden](https://github.com/Spellskite-coding/Warden)
+- **Stack:** Rust / eBPF / GTK4 | **License:** Open Source
+- **Overview:** Hardened, autonomous EDR built in Rust specifically for Linux workstations. Leverages fanotify and custom eBPF probes (`warden-exec`, `warden-network`) to monitor execution anomalies, stop ransomware across multiple directory forks, and prevent privilege escalation via PID file-descriptor interdiction.
 
 ### Endpoint Security AI Agent
-**Stack:** Python / FastAPI / osquery / Docker | **License:** Open Source (GitHub) 
-An open-source **AI EDR** that detects and stops ransomware, Cobalt Strike, and living-off-the-land attacks in real time . Key capabilities:
-- **ML-powered ransomware detection**: encrypted extensions, high entropy, rapid file changes 
-- **C2 beaconing detection**: interval, jitter, reputation analysis 
-- **LOLBAS detection**: abuse of PowerShell, cmd, wmic, rundll32 
-- **Autonomous response**: auto-kill, quarantine, host isolation 
-- **ChatGPT-style AI analyst** for natural language security event queries 
-- **Cross-platform**: Windows, macOS, Linux via Docker Compose 
+[![Stars](https://img.shields.io/github/stars/MuthoniGathiithi/endpoint-security-ai-agent?style=social&color=white)](https://github.com/MuthoniGathiithi/endpoint-security-ai-agent/stargazers)
+- **Repository:** [MuthoniGathiithi/endpoint-security-ai-agent](https://github.com/MuthoniGathiithi/endpoint-security-ai-agent)
+- **Stack:** Python / FastAPI / osquery / Docker | **License:** MIT
+- **Overview:** Autonomous AI-driven EDR prototype designed to stop ransomware, Living-off-the-Land (LOLBAS) attacks, and C2 beaconing. Integrates osquery kernel telemetry tables with an interactive LLM natural-language incident analyst interface.
 
-It uses osquery for real-time telemetry and provides a Next.js dashboard with real-time WebSocket updates [citation:12].  
-**Best for:** Security teams and researchers wanting an open-source AI-driven EDR with kernel-level telemetry and natural language analysis capabilities.
+### RuntimeTrace
+[![Stars](https://img.shields.io/github/stars/JackSessions/runtime-trace?style=social&color=white)](https://github.com/JackSessions/runtime-trace/stargazers)
+- **Repository:** [JackSessions/runtime-trace](https://github.com/JackSessions/runtime-trace)
+- **Stack:** Python / eBPF / Linux | **License:** Open Source
+- **Overview:** Runtime cross-layer consistency checker powered by eBPF. Pinpoints stealth discrepancies between kernel state and user-space visibility, such as deleted running executables (`deleted_exe_running`) and hidden loadable kernel modules (LKMs).
+
+### KSword
+- **Repository:** AtomGit / Internal Research Mirror
+- **Stack:** C++ / Windows Kernel Driver / Qt | **License:** Open Source
+- **Overview:** Windows kernel anti-rootkit and low-level system inspection utility built on nested hypervisor virtualization (Intel VMX/EPT). Provides deep introspection into SSDT/SSSDT tables, inline/IAT/EAT hooks, ALPC communication, and driver object callouts.
+
+### RustEKC
+- **Repository:** Zenodo Research Artifact (USENIX)
+- **Stack:** Rust / RISC-V64 / AArch64 | **License:** Open Source Research Artifact
+- **Overview:** Embedded Kernel Compartment (EKC) implemented in Rust providing lightweight kernel isolation without requiring hardware virtualization modules or extended instruction-set architectures.
+
+### Harness
+- **Repository:** USENIX Security '25 Artifact
+- **Stack:** C / Hypervisor / AOSP | **License:** Research Artifact
+- **Overview:** Lightweight automotive hypervisor isolation framework that protects vehicle control signals and safety-critical subsystems from an untrusted Android Automotive Operating System (AAOS).
 
 ---
 
 ## 📊 Comparison at a Glance
 
-| Software | License | Stack | Kernel-Level | Focus | Self-Hosted | Best For |
-|----------|---------|-------|--------------|-------|-------------|----------|
-| **CrowdStrike** | Proprietary | Cloud | ✅ | Endpoint protection | ❌ | AI-native EDR/XDR |
-| **SentinelOne** | Proprietary | Cloud | ✅ | Autonomous EDR | ❌ | Behavioral AI response |
-| **Warden** | Open Source | Rust/eBPF | ✅ | Linux EDR | ✅ | Hardened OSS EDR |
-| **Wazuh** | GPL-2.0 | C++/OpenSearch | ✅ | SIEM/XDR | ✅ | Full OSS security platform |
-| **chkrootkit** | Open Source | Shell/C | (Checks) | Rootkit detection | ✅ | Lightweight rootkit scanner |
-| **HakiOS** | APSL 2.0/MIT | C/XNU | ✅ | Darwin on Android | ✅ | Cross-platform kernel research |
-| **RustEKC** | Open Source | Rust | ✅ | Kernel isolation | ✅ | Portable kernel compartment |
-| **Harness** | Research | Hypervisor | ✅ | AAOS protection | ✅ | Automotive kernel isolation |
-| **RuntimeTrace** | Open Source | Python/eBPF | ✅ | Consistency checking | ✅ | Kernel/user-space discrepancies |
-| **KSword** | Open Source | Windows/Qt | ✅ | Anti-rootkit | ✅ | Windows kernel research |
-| **Endpoint Security AI** | Open Source | Python/FastAPI | (osquery) | AI EDR | ✅ | AI-driven threat detection |
+| Software | Classification | Primary Stack | Kernel-Level Telemetry | Primary Focus | Deployment Model | Best For |
+| :--- | :--- | :--- | :--- | :--- | :--- | :--- |
+| **CrowdStrike Falcon** | Commercial SaaS | C++ / Cloud AI | ✅ Kernel Driver Sensor | Autonomous EDR / XDR | Cloud SaaS Agent | Enterprise SOCs & Threat Hunting |
+| **SentinelOne Singularity**| Commercial SaaS | C++ / Python / AI | ✅ Behavioral Driver | Autonomous Endpoint Protection | Cloud SaaS Agent | Zero-touch Automated Rollback |
+| **Microsoft Defender** | Commercial SaaS | C++ / Cloud / M365 | ✅ Native OS Sensors | Enterprise EDR / XDR | Cloud / OS Built-in | Microsoft 365 & Hybrid Estates |
+| **Palo Alto Cortex XDR**| Commercial SaaS | C++ / Cloud | ✅ Driver Interception | Multi-Data Source XDR | Cloud SaaS Agent | Cross-domain Network + EDR SecOps |
+| **osquery** | Open Source | C++ / SQLite | ✅ (via OS Tables) | SQL-based OS Introspection | Self-Hosted / Fleet | Endpoint Audit & Fleet Observability |
+| **bcc** | Open Source | C / Python / eBPF | ✅ Deep eBPF Tracing | Linux Tracing & Interdiction | Self-Hosted CLI / Tools | Linux Kernel Developers & Performance |
+| **Wazuh** | Open Source | C / C++ / OpenSearch | ✅ Syscall / FIM Monitoring | Unified Open Source XDR/SIEM | Self-Hosted Distributed | On-premise SIEM & Compliance |
+| **Atomic Red Team** | Open Source | PowerShell / YAML | ❌ (Tests OS Sensors) | Attack Simulation (ATT&CK) | Standalone Scripts | Detection Engineering & Validation |
+| **bpftrace** | Open Source | C++ / LLVM / eBPF | ✅ Dynamic kprobe/uprobe | High-level Kernel Tracing | Self-Hosted CLI | Live Kernel Debugging & Research |
+| **Falco** | Open Source | C++ / eBPF | ✅ Syscall Interception | Cloud-Native Runtime Security | Self-Hosted Daemon / K8s | Container & Kernel Runtime Defense |
+| **Syzkaller** | Open Source | Go / C++ | ✅ Syscall Fuzzing | Unsupervised Kernel Fuzzing | Self-Hosted Cluster | OS Kernel Vulnerability Research |
+| **Capa** | Open Source | Python / Rust | ❌ (Static / Dynamic) | Binary Capability Detection | Self-Hosted CLI | Reverse Engineering & Malware Analysis |
+| **Tetragon** | Open Source | C / Go / eBPF | ✅ Real-time Enforcement | eBPF Security Observability | Self-Hosted Daemon / K8s | In-kernel Policy & Process Killing |
+| **Tracee** | Open Source | Go / C / eBPF | ✅ eBPF Event Tracing | Runtime Security & Forensics | Self-Hosted Daemon / K8s | Container Security & Behavioral Analysis |
+| **Volatility 3** | Open Source | Python | ✅ Volatile RAM Forensics | Memory Forensics & Rootkits | Self-Hosted CLI | Incident Response & DKOM Rootkits |
+| **HakiOS** | Open Source | C / Darwin XNU | ✅ Apple XNU Kernel | Darwin Kernel on Android | Bare-metal Phone / QEMU | Kernel Porting & Driver Internals |
+| **AIDE** | Open Source | C | ❌ (Filesystem FIM) | File Integrity Monitoring | Self-Hosted Cron / Daemon | OS Tampering & Binary Verification |
+| **Warden** | Open Source | Rust / eBPF | ✅ fanotify & eBPF | Linux Workstation EDR | Self-Hosted Standalone | Hardened Linux Desktop Protection |
+| **chkrootkit** | Open Source | Shell / C | ⚠️ (Process/LKM Checks) | Rootkit Scanning | Self-Hosted Script | Quick Legacy Linux Rootkit Audits |
+| **RuntimeTrace** | Open Source | Python / eBPF | ✅ Consistency Checking | Kernel vs User-space Delta | Self-Hosted CLI | Detecting Hidden Modules & Fileless Apps |
+| **KSword** | Open Source | C++ / Windows Driver | ✅ Hypervisor VMX/EPT | Windows Kernel Anti-Rootkit | Self-Hosted Desktop App | Deep Windows Kernel Analysis & Hooks |
 
 ---
 
 ## 🤝 Contributing
 
-Contributions are welcome! If you know of an open-source OS security or kernel research tool that should be listed here, please open a pull request with:
+Contributions are warmly welcome! If you know of an outstanding open-source OS security framework, eBPF tool, or kernel research project that should be added to this list:
 
-- Project name and URL
-- Brief description (1–2 sentences)
-- Stack and license
-- Why it stands out
-
-Please ensure the project is actively maintained (releases within the last 12 months) and genuinely open-source.
-
-**Note on the open-source ecosystem:** The open-source landscape for **OS security and kernel research** is **fragmented across distinct research and operational layers**. **Warden** provides the most hardened open-source Linux EDR, with documented adversarial testing and eBPF-based kernel monitoring . **Wazuh** remains the most comprehensive open-source SIEM/XDR platform with rootkit detection and cross-platform support . **HakiOS** represents ambitious kernel porting research, running Darwin on Android hardware . **RustEKC** and **Harness** explore kernel isolation mechanisms for security-critical systems . **KSword** provides deep Windows kernel anti-rootkit analysis . **RuntimeTrace** and **Endpoint Security AI Agent** address specific detection and analysis workflows. No single open-source project replicates the full enterprise breadth of CrowdStrike or SentinelOne, but these tools cover the core kernel-level research, rootkit detection, and EDR workflows for self-hosted and research deployments.
+1. Fork this repository.
+2. Create a new branch: `git checkout -b feature/new-kernel-tool`
+3. Add your entry following the established format:
+   - Include a star badge linking to the repository's stargazers: `[![Stars](https://img.shields.io/github/stars/org/repo?style=social&color=white)](https://github.com/org/repo/stargazers)`
+   - Include repository link, primary stack, license, and a concise 2–3 sentence description.
+   - Insert it in the sorted order based on stargazers count.
+4. Submit a Pull Request with a clear description of why the tool is valuable for OS security and kernel researchers.
 
 ---
 
 ## 📄 License
 
-This list is released under CC0 1.0 Universal (Public Domain). The software projects listed retain their respective licenses.
+This list and documentation are released under the [Creative Commons Zero 1.0 Universal](LICENSE) (CC0 1.0) Public Domain Dedication. All listed commercial products and open-source software packages remain the copyrighted intellectual property and trademarks of their respective creators and owners.
 
 ---
 
-⭐ **If this list helped you discover a useful tool, please star the repo!** ⭐
+⭐ **Found this resource useful for your research? Please consider starring this repository!** ⭐
