@@ -83,7 +83,7 @@ Enterprise-grade, cloud-hosted operating system security, EDR, and kernel-level 
 
 ## 💻 Open-Source Software & Research Tools
 
-Self-hosted, community-driven frameworks, kernel introspection libraries, eBPF tracing tools, and OS security analysis engines. Sorted by GitHub star count in descending order: 🌟
+Self-hosted, community-driven frameworks, kernel introspection libraries, eBPF tracing tools, and OS security analysis engines. Sorted by GitHub Stars_Count in descending order: 🌟
 
 ### ⚡ osquery
 [![Stars](https://img.shields.io/github/stars/osquery/osquery?style=social&color=white)](https://github.com/osquery/osquery/stargazers)
@@ -270,7 +270,7 @@ Contributions are warmly welcome! If you know of an outstanding open-source OS s
 1. Fork this repository.
 2. Create a new branch: `git checkout -b feature/new-kernel-tool`
 3. Add your entry following the established format:
-   - Include a star badge linking to the repository's stargazers: `[![Stars](https://img.shields.io/github/stars/org/repo?style=social&color=white)](https://github.com/org/repo/stargazers)`
+   - Include a Stars_Badge linking to the repository's stargazers: `[![Stars](https://img.shields.io/github/stars/org/repo?style=social&color=white)](https://github.com/org/repo/stargazers)`
    - Include repository link, primary stack, license, and a concise 2–3 sentence description.
    - Insert it in the sorted order based on stargazers count.
 4. Submit a Pull Request with a clear description of why the tool is valuable for OS security and kernel researchers.
